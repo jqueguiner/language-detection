@@ -238,3 +238,29 @@ under the MIT license: respectively, [Kent S. Johnson][grant-3],
 [iso-639-3]: https://github.com/wooorm/iso-639-3
 
 [iso-639-3-to-1]: https://github.com/amitbend/iso-639-3-to-1
+
+
+
+#### Docker for API
+
+You can build and run the docker using the following process:
+
+Cloning
+```console
+gti clone https://github.com/jqueguiner/language-detection.git language-detection
+```
+
+Building Docker
+```console
+cd language-detection && docker build -t language-detection -f Dockerfile-api .
+```
+
+Running Docker
+```console
+echo "http://$(curl ifconfig.io):5000" && docker run -p 5000:5000 -d language-detection
+```
+
+Calling the API for language detection
+```console
+curl -X POST "http://MY_SUPER_API_IP:5000/detect" -H "accept: image/png" -H "Content-Type: application/json" -d '{"text":"I really love this API"}'
+```
